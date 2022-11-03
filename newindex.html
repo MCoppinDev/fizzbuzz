@@ -4,13 +4,15 @@
 <title>FizzBuzz</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS only -->
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
-<link rel="stylesheet" href="css/style.css">
-<style>
-
-</style>
+<link rel="stylesheet" href="css/style.css">  
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" href="css/prism.css">
 </head>
+
+
 <body>
 
 <!-- Links (sit on top) -->
@@ -60,22 +62,90 @@
 </div>
 
 <!-- Solution Container -->
-<div class="w3-container" id="menu">
+<div class="w3-container" id="solve">
   <div class="w3-content" style="max-width:700px">
     <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">THE SOLUTION</span></h5>
     </div>
 
-<div class="w3-content" style="max-width:700px">
-    <p>
-        For this challenge, instead of just using 3 and 5 you can input your own numbers and a limit to how many numbers you would like to go up to. The max is 100 </p>
-        <form>
-       <p><input class="w3-input w3-padding-16 w3-border" type="number" min="1" max="100" step=""placeholder="First Number" value="3" required name="input1"></p>
-        <p><input class="w3-input w3-padding-16 w3-border" type="number"min="1" max="100"  placeholder="Second Number" value="5" required name="input2"></p>
-          <p><input class="w3-input w3-padding-16 w3-border" type="number"min="1" max="100"  placeholder="limit" value="100" required name="input2"></p>
-          <button class="w3-btn" style="width:100%">Check</button>
-      </form>
-  </div>
+  <div class="w3-content" style="max-width:700px">
+      <p>
+        For this challenge, instead of just using 3 and 5 you can input your own numbers and a limit to how many numbers you would like to go up to. The max is 100 
+      </p>
+        
+       <input class="w3-input w3-padding-16 w3-border" type="number" min="1" max="100" step=""placeholder="First Number" value="3" required id="input1">
 
+        <input class="w3-input w3-padding-16 w3-border" type="number"min="1" max="100"  placeholder="Second Number" value="5" required id="input2">
+
+        <input class="w3-input w3-padding-16 w3-border" type="number"min="1" max="100"  placeholder="limit" value="100" required id="limit">
+
+        <button id="fizzButton" class="w3-btn" style="width:100%" >Check</button>
+
+<!-- data-bs-toggle="modal" data-bs-target="#results"  -->
+
+    </div>
+
+    <div id="resultCard">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text" id="resultMessage"></p>
+          <button type="button" onclick="getElementById('resultCard').style.visibility = 'hidden'" class="btn btn-dark" style="width:100%">Go Away</button>
+        </div>
+      </div>
+    </div>
+
+
+</div>
+
+<!-- Code -->
+
+<div class="w3-container" id="code">
+  <div class="w3-content" style="max-width:auto">
+    <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">CODE</span></h5>
+
+       <pre class="line-numbers" >
+          <code class="language-javascript">
+
+function fizzBuzz(num1, num2,limit) {
+//empty array initialized
+  let results = [];
+
+  //loop until limit is reached
+  for (let i = 1; i <= limit; i++) {
+
+    //if i is divisible by our first input AND second then add FizzBuzz to the array.
+    if (i % num1 == 0 && i % num2 == 0) {
+      results.push(' ✨FizzBuzz⚡ ');
+    }
+
+  
+    else if (i % num1 == 0) {
+      results.push(' Fizz!✨ ');
+    }
+      
+    else if (i % num2 == 0) {
+      results.push(' Buzz!⚡ ');
+    }
+      
+    else results.push(` ${i} `);
+  };
+
+  return results;
+};
+
+
+document.getElementById("fizzButton").addEventListener("click", function () {
+  let num1 = document.getElementById("input1").value;
+  let num2 = document.getElementById("input2").value;
+  let limit = document.getElementById("limit").value;
+  resultDOM.style.visibility = "visible"
+
+  
+  resultMessage.innerHTML = fizzBuzz(num1, num2, limit);
+
+});
+          </code>
+        </pre>
+  </div>
 </div>
 
 
@@ -83,11 +153,20 @@
 <!-- End page content -->
 </div>
 
+
+
+
 <!-- Footer -->
 <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
   <p>Matt Coppinger  <a href="https://mattcoppinger.netlify.app/" title="My Portfolio" target="_blank" class="w3-hover-text-green">Portfolio</a></p>
 </footer>
 
+              
+   
+<!-- JavaScript -->
+<script src="js/fizzbuzz.js"></script>
+<script src="js/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js
+"></script>
 
-</body>
 </html>
