@@ -1,3 +1,5 @@
+let fizzButton = document.getElementById('fizzButton');
+let limit = document.getElementById('limit');
 var fizzBuzzResults = document.getElementById("fizzBuzzResults");
 var resultDOM = document.getElementById("resultCard");
 var resultMessage = document.getElementById("resultMessage");
@@ -28,13 +30,22 @@ function fizzBuzz(num1, num2,limit) {
 };
 
 
-document.getElementById("fizzButton").addEventListener("click", function () {
+fizzButton.addEventListener("click", function () {
   let num1 = document.getElementById("input1").value;
   let num2 = document.getElementById("input2").value;
   let limit = document.getElementById("limit").value;
+
   resultDOM.style.visibility = "visible"
 
   
   resultMessage.innerHTML = fizzBuzz(num1, num2, limit);
+
+});
+
+window.addEventListener("keypress", function (event) {
+  if (event.key == "Enter") {
+    fizzButton.click();
+  
+  }
 
 });
